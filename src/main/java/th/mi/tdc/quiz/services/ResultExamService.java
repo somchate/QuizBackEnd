@@ -10,10 +10,7 @@ public interface ResultExamService {
     List<ResultExam> getAllResultExam();
     List<ResultExam> getByNstId(Long id);
     ResultExam updateResultExam(ResultExam resultExam, Long id);
-
-
     List<ResultExam> getByResultExamId(Long id);
-
     void deleteResultExam(Long id);
 
 }

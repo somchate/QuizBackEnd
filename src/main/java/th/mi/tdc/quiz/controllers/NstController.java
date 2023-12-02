@@ -9,6 +9,7 @@ import th.mi.tdc.quiz.payload.response.ApiResponse;
 import th.mi.tdc.quiz.services.NstService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -16,7 +17,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class NstController {
 
-    private NstService nstService;
+    private final NstService nstService;
 
     public NstController(NstService nstService) {
         super();
@@ -29,7 +30,7 @@ public class NstController {
                 HttpStatus.CREATED);
     }
     // Get All RequestVerify
-    @GetMapping()
+    @GetMapping("/v1/nsts")
     public ApiResponse<List<Nst>> getAllNst() {
         List<Nst> allNst = nstService.getAllNst();
 
@@ -53,16 +54,23 @@ public class NstController {
     public Optional<Nst> getNstById(@PathVariable Long citizen_id) {
         return nstService.getNstById(citizen_id);
     }
-    @PutMapping("/v1/{citizen_id}")
-    public  ResponseEntity<Nst> updateNst(@PathVariable("citizen_id") Long id,
-                                                              @RequestBody Nst nst) {
+
+    @PutMapping("/v1/nsts/{citizen_id}")
+    public  ResponseEntity<Nst> updateNst(@PathVariable("citizen_id") Long id, @RequestBody Nst nst) {
 
         return new  ResponseEntity<Nst>(nstService.updateNst(nst,
                 id),HttpStatus.OK);
     }
+
     @DeleteMapping("/v1/{citizen_id}")
     public ResponseEntity<String> deleteRequestVerify(@PathVariable("citizen_id") Long id) {
         nstService.deleteNst(id);
         return  new ResponseEntity<String>(HttpStatus.OK);
     }
+
+    @PatchMapping("/v1/nsts/{citizen_id}")
+    public Nst updateNstFields(@PathVariable("citizen_id") Long id, @RequestBody Map<String, Object> fields){
+        return nstService.updateNstByFields(id,fields);
+    }
+
 }

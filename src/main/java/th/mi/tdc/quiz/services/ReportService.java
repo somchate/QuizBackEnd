@@ -3,7 +3,7 @@ package th.mi.tdc.quiz.services;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.ResponseEntity;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 
 public interface ReportService {

@@ -14,11 +14,14 @@ import java.util.List;
 @Repository
 public interface NstRepository extends JpaRepository<Nst, Long> {
 
-//  @Query("Select n FROM nst n WHERE n.first_name like %?1%")
-@Query(value = "SELECT n FROM nst n WHERE n.first_name like %:first_name%", nativeQuery = true)
+  @Query(value = "SELECT n FROM nst n WHERE n.first_name like %:first_name%", nativeQuery = true)
   Page<Nst> findByFirst_Name(String first_name, Pageable pageable);
+
+  @Query(value = "SELECT * FROM nst n WHERE n.username like %:username% ", nativeQuery = true)
+  List<Nst> findByUserName(String username);
 
   Boolean existsByUsername(String username);
 
   Nst findByUsername(String citizen_id);
+
 }

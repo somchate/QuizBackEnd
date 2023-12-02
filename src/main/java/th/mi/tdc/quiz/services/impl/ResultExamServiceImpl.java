@@ -39,7 +39,6 @@ public class ResultExamServiceImpl implements ResultExamService {
     @Override
     public  List<ResultExam> getByResultExamId(Long id) { return resultExamRepository.findByNstId(id); }
 
-
     @Override
     public void deleteResultExam(Long id) {
         resultExamRepository.findById(id).orElseThrow(

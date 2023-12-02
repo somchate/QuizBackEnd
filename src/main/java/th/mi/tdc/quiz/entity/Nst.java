@@ -1,8 +1,10 @@
 package th.mi.tdc.quiz.entity;
 
 import lombok.Data;
+
+import java.sql.Timestamp;
 import java.util.Date;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -46,7 +48,6 @@ public class Nst {
 	@NotBlank
 	private String password;
 
-	@NotBlank
 	private Date dob;
 
 	@NotBlank
@@ -65,8 +66,7 @@ public class Nst {
 	@Size(max = 120)
 	private String ac_name;
 
-	@NotBlank
-	private Date quiz_date;
+	private String quiz_date;
 
 	@Size(max = 120)
 	private String description;

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Quiz" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="32756d1a-eab2-4a05-97c9-b21d187ad21c">
+	<field name="pre_name" class="java.lang.String"/>
+	<field name="first_name" class="java.lang.String"/>
+	<field name="last_name" class="java.lang.String"/>
+	<field name="nst_class" class="java.lang.String"/>
+	<field name="ac_name" class="java.lang.String"/>
+	<field name="quiz_date" class="java.sql.Timestamp"/>
+	<field name="description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="29" width="400" height="31" uuid="8e9cf403-51b1-41e4-b244-4be2a4489478"/>
+				<textElement textAlignment="Center">
+					<font fontName="THSarabun" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[การทดสอบภาคทฤษฎีนักศึกษาวิชาทหาร]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="167" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="20" width="60" height="30" uuid="7e79dd75-76bc-474e-98a6-6ca590ef5ed6"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pre_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="20" width="60" height="30" uuid="91ff9d61-ca77-48c0-98b4-0b17a8f03127"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<text><![CDATA[ชื่อ-นามสกุล]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="20" width="120" height="30" uuid="f6efc683-8660-4ae3-b97d-a4cc87a84332"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="20" width="90" height="30" uuid="ca95f2c0-0b4c-46e2-997c-4f71aee3aaf5"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="52" width="60" height="30" uuid="210db982-53c2-445f-a3eb-4c2de54c9ba7"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<text><![CDATA[ชั้นปีที่]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="52" width="80" height="30" uuid="5f6ffb83-5dd1-4c00-abdf-357534df32d8"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nst_class}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="52" width="100" height="30" uuid="9cf5a918-5983-4489-bb98-573b6a298ede"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<text><![CDATA[สถานศึกษาวิชาทหาร]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="52" width="240" height="30" uuid="3f579642-b6b8-4178-9542-77f7ec813a0d"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ac_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="87" width="100" height="30" uuid="4eeb5730-f705-4c7c-a21a-05e283ba7cd9"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<text><![CDATA[วันที่ทำแบบทดสอบ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="87" width="50" height="30" uuid="e88e83c5-39b6-43cf-837b-5162b9b7b062"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<text><![CDATA[หมายเหตุ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="87" width="180" height="30" uuid="9269ff3e-5eb7-4cac-a7b8-41648df449f5"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="20" y="150" width="515" height="1" uuid="5e1be40d-ba1e-406b-963b-7c40793e751c"/>
+			</line>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="130" y="87" width="130" height="30" uuid="03723b2e-c8bf-4439-95db-f8e8c309395a"/>
+				<textElement>
+					<font fontName="THSarabun" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DATEFORMAT(dd/MM/yyyy)]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

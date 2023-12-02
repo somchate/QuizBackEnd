@@ -1,6 +1,8 @@
 package th.mi.tdc.quiz.security.jwt;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,20 +17,27 @@ import io.jsonwebtoken.*;
 public class JwtUtils {
   private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-  @Value("${verification.backend.jwtSecret}")
+  @Value("${quiz.backend.jwtSecret}")
   private String jwtSecret;
 
-  @Value("${verification.backend.jwtExpirationMs}")
+  @Value("${quiz.backend.jwtExpirationMs}")
   private int jwtExpirationMs;
+
+  @Value("${quiz.backend.jwtKeyIdentify}")
+  private String jwtKeyIdentify;
 
   public String generateJwtToken(UserDetailsImpl userPrincipal) {
     return generateTokenFromUsername(userPrincipal.getUsername());
   }
 
   public String generateTokenFromUsername(String username) {
-    return Jwts.builder().setSubject(username).setIssuedAt(new Date())
-        .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
-        .compact();
+    Map<String, Object> headers = new HashMap<String, Object>();
+    headers.put("typ", "JWT");
+    headers.put("kid", jwtKeyIdentify);
+
+    return Jwts.builder().setHeaderParams(headers).setSubject(username).setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
+            .compact();
   }
 
   public String getUserNameFromJwtToken(String token) {

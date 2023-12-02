@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -18,7 +18,7 @@ public class ResultExam extends BaseEntity {
     @Column(nullable = false)
     private Date exam_date;
 
-    @Column(nullable = false)
+    @Column(length = 200)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

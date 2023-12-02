@@ -27,6 +27,8 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Date dob;
 
+	private String quiz_date;
+
 	@JsonIgnore
 	private String password;
 
@@ -36,10 +38,15 @@ public class UserDetailsImpl implements UserDetails {
 
 	private  String pre_name;
 
+	private  String ac_name;
+
+	private String description;
+
 	private Collection<? extends GrantedAuthority> authorities;
 
 	public UserDetailsImpl(Long id, String username, String password, String first_name,
-						   String last_name, String gender_id, String nst_class, String pre_name ) {
+						   String last_name, String gender_id, String nst_class, String pre_name,
+						   String ac_name, String quiz_date , String description) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -48,6 +55,10 @@ public class UserDetailsImpl implements UserDetails {
 		this.last_name = last_name;
 		this.gender_id = gender_id;
 		this.nst_class = nst_class;
+		this.ac_name = ac_name;
+		this.quiz_date = quiz_date;
+		this.description = description;
+
 	}
 
 	public static UserDetailsImpl build(Nst user) {
@@ -59,7 +70,10 @@ public class UserDetailsImpl implements UserDetails {
 				user.getLast_name(),
 				user.getGender_id(),
 				user.getNst_class(),
-				user.getPre_name()
+				user.getPre_name(),
+				user.getAc_name(),
+				user.getQuiz_date(),
+				user.getDescription()
 				);
 	}
 

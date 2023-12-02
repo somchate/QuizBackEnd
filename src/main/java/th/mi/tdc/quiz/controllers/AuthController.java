@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,7 @@ public class AuthController {
   @Autowired
   RefreshTokenService refreshTokenService;
 
+//  @CrossOrigin(origins = "https://gdcc.tdc.mi.th", maxAge = 3600)
   @PostMapping({"/v1/auth/signin"})
   public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
     Authentication authentication = this.authenticationManager.authenticate((Authentication)new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -57,9 +59,10 @@ public class AuthController {
     RefreshToken refreshToken = this.refreshTokenService.createRefreshToken(userDetails.getId());
     return ResponseEntity.ok(new JwtResponse(jwt, refreshToken.getToken(), userDetails.getId(), userDetails
             .getUsername(), userDetails.getFirst_name(), userDetails.getLast_name(), userDetails.getGender_id(),
-            userDetails.getNst_class(), userDetails.getPre_name()));
+            userDetails.getNst_class(), userDetails.getPre_name(), userDetails.getAc_name(), userDetails.getQuiz_date(), userDetails.getDescription()));
   }
 
+//  @CrossOrigin(origins = "https://gdcc.tdc.mi.th", maxAge = 3600)
   @PostMapping("/v1/auth/refreshtoken")
   public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
     String requestRefreshToken = request.getRefreshToken();
@@ -77,7 +80,8 @@ public class AuthController {
         .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
             "Refresh token is not in database!"));
   }
-  
+
+//  @CrossOrigin(origins = "https://gdcc.tdc.mi.th", maxAge = 3600)
   @PostMapping("/v1/auth/logout")
   public ResponseEntity<?> logoutUser(@Valid @RequestBody LogOutRequest logOutRequest) {
     refreshTokenService.deleteByUserId(logOutRequest.getUserId());

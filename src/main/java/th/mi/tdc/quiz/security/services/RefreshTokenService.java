@@ -16,7 +16,7 @@ import th.mi.tdc.quiz.repository.NstRepository;
 
 @Service
 public class RefreshTokenService {
-  @Value("${verification.backend.jwtRefreshExpirationMs}")
+  @Value("${quiz.backend.jwtRefreshExpirationMs}")
   private Long refreshTokenDurationMs;
 
   @Autowired

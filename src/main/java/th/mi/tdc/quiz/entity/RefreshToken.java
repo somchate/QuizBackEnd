@@ -2,7 +2,7 @@ package th.mi.tdc.quiz.entity;
 
 import java.time.Instant;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity(name = "refreshtoken")
 public class RefreshToken {

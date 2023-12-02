@@ -11,20 +11,19 @@ import org.springframework.web.server.ResponseStatusException;
 import th.mi.tdc.quiz.entity.Nst;
 import th.mi.tdc.quiz.repository.NstRepository;
 import th.mi.tdc.quiz.services.ReportService;
+import th.mi.tdc.quiz.services.NstService;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-
+@CrossOrigin(origins = {"*"}, maxAge = 3600L)
 @RestController
-@RequestMapping( produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = "*")
+//@RequestMapping( produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping({"/api"})
 public class ReportController {
 
     @Autowired
@@ -33,14 +32,17 @@ public class ReportController {
     @Autowired
     private NstRepository nstRepository;
 
+    @Autowired
+    private  NstService nstService;
+
 //    public ReportController(ReportService reportService) {
 //        super();
 //        this.reportService = reportService;
 //    }
 
 
-
-    @PostMapping("/api/v1/report")
+//    @CrossOrigin(origins = "https://gdcc.tdc.mi.th", maxAge = 3600)
+    @PostMapping("/v1/report")
 //    public void (HttpServletResponse response,@PathVariable String format) throws JRException, IOException {
 //           reportService.exportRequestVerifyRpt(response,format);
 
@@ -59,21 +61,21 @@ public class ReportController {
         // output pdf filename
         String fileName = (String) payload.get("fileName");
 
+        String username = (String) payload.get("username");
+
         // using parameters in json as jasper report parameters from request
         Map<String, Object> params = (Map) payload.get("parameters");
 
         // using data in json as jasper report data source from request
 //        Collection<Map<String, ?>> rows = (Collection) payload.get("data");
-        List<Nst> requestVerify = nstRepository.findAll();
-
+//         List<Nst> requestVerify = nstRepository.findAll();
+         List<Nst> nstQuiz = nstService.getByUserName(username);
 
         // test
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(requestVerify);
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(nstQuiz);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createBy", "SpringBoot");
-        parameters.put("requestData", new JRBeanCollectionDataSource(requestVerify));
-
-
+        parameters.put("requestData", new JRBeanCollectionDataSource(nstQuiz));
 
         // dynamic loading different jasper report by request
         InputStream jasperStream = resource.openStream();

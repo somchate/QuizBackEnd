@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import th.mi.tdc.quiz.entity.Nst;
 import th.mi.tdc.quiz.repository.NstRepository;
 import th.mi.tdc.quiz.services.ReportService;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -48,10 +48,6 @@ public class ReportServiceImpl implements ReportService {
         JRBeanCollectionDataSource dataSource=new JRBeanCollectionDataSource(nst);
         Map<String,Object> parameters= new HashMap<>();
         parameters.put("createBy", "Java Techie");
-
-
-
-
 
 //        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,dataSource);
 //        if(reportFormat.equalsIgnoreCase("html")) {
