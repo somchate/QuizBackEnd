@@ -14,6 +14,7 @@ import th.mi.tdc.quiz.services.ReportService;
 import th.mi.tdc.quiz.services.NstService;
 
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -33,7 +34,7 @@ public class ReportController {
     private NstRepository nstRepository;
 
     @Autowired
-    private  NstService nstService;
+    private NstService nstService;
 
 //    public ReportController(ReportService reportService) {
 //        super();
@@ -41,14 +42,14 @@ public class ReportController {
 //    }
 
 
-//    @CrossOrigin(origins = "https://gdcc.tdc.mi.th", maxAge = 3600)
+    //    @CrossOrigin(origins = "https://gdcc.tdc.mi.th", maxAge = 3600)
     @PostMapping("/v1/report")
 //    public void (HttpServletResponse response,@PathVariable String format) throws JRException, IOException {
 //           reportService.exportRequestVerifyRpt(response,format);
 
     public void report(HttpServletResponse response, @RequestBody Map<String, Object> payload) throws JRException, IOException {
 
-         // target jasper filename e.g. sample.jasper
+        // target jasper filename e.g. sample.jasper
         String template = (String) payload.get("template");
 
         // check template file exists or not
@@ -69,7 +70,7 @@ public class ReportController {
         // using data in json as jasper report data source from request
 //        Collection<Map<String, ?>> rows = (Collection) payload.get("data");
 //         List<Nst> requestVerify = nstRepository.findAll();
-         List<Nst> nstQuiz = nstService.getByUserName(username);
+        List<Nst> nstQuiz = nstService.getByUserName(username);
 
         // test
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(nstQuiz);

@@ -64,10 +64,11 @@ public class ResultExamController {
         ResultExam resultExam = (ResultExam) this.nstService.getNstById(citizen_id).map(request -> {
             resultExamRequest.setNst(request);
             resultExamRequest.setExam_date(checkResultExam.getExam_date());
+            resultExamRequest.setDescription(checkResultExam.getExam_desc());
             checkResultExam.getAnswerChoose().forEach((key) -> {
                 if (key.getQuestionID() != null && key.getAnswerSelected() != null) {
 
-                    this.quizService.getQuizById(key.getQuestionID()).map(quiz -> {
+                    this.quizService.getQuizByIdAndNote(key.getQuestionID(), checkResultExam.getExam_desc()).map(quiz -> {
                         if (quiz.getAnswer().equals(key.getAnswerSelected())) {
                             this.examPoint = examPoint + 1;
                         }

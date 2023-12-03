@@ -19,6 +19,8 @@ public interface QuizService {
 
     Optional<Quiz> getQuizById(Long id);
 
+    Optional<Quiz> getQuizByIdAndNote (Long id, String exam_desc);
+
     Quiz updateQuiz(Quiz quiz, Long id);
 
     void deleteQuiz(Long id);

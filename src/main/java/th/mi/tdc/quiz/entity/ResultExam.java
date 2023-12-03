@@ -22,7 +22,7 @@ public class ResultExam extends BaseEntity {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "nst_id", nullable = false)
+    @JoinColumn(name = "nst_cid", nullable = false)
     @JsonIgnore
     private Nst nst;
 

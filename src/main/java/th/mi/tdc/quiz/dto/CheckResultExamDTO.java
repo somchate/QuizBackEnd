@@ -15,6 +15,7 @@ public class CheckResultExamDTO {
     private String citizen_id;
     private String exam_point;
     private Date exam_date;
+    private String exam_desc;
     private List<AnswerChooseDTO> answerChoose;
 
 }

@@ -49,6 +49,11 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
+    public Optional<Quiz> getQuizByIdAndNote(Long id, String exam_desc) {
+        return quizRepository.findByIdAndNote(id, exam_desc);
+    }
+
+    @Override
     public Quiz updateQuiz(Quiz quiz, Long id) {
         return null;
     }
