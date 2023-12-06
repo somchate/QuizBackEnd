@@ -23,12 +23,14 @@ public class NstController {
         super();
         this.nstService = nstService;
     }
+
     // Create RequestVerify
     @PostMapping("/v1")
     public ResponseEntity<Nst> saveRequestVerify(@RequestBody Nst nst) {
         return new ResponseEntity<Nst>(nstService.saveNst(nst),
                 HttpStatus.CREATED);
     }
+
     // Get All RequestVerify
     @GetMapping("/v1/nsts")
     public ApiResponse<List<Nst>> getAllNst() {
@@ -44,9 +46,14 @@ public class NstController {
     }
 
     @GetMapping("/v1/pagewithparams")
-    private ApiResponse<Page<Nst>> getProductsWithPageFilter(@RequestParam int page, @RequestParam int limit ,@RequestParam String first_name) {
+    private ApiResponse<Page<Nst>> getProductsWithPageFilter(@RequestParam int page, @RequestParam int limit, @RequestParam String first_name) {
         Page<Nst> nstWithPaginationTest = nstService.getNstWithPageFilter(page, limit, first_name);
         return new ApiResponse<>(nstWithPaginationTest.getSize(), nstWithPaginationTest);
+    }
+
+    @GetMapping("/v1/nsts/username/{username}")
+    private List<Nst> getNstByUserName(@PathVariable("username") String username) {
+        return this.nstService.getByUserName(username);
     }
 
     // Get by id
@@ -56,21 +63,21 @@ public class NstController {
     }
 
     @PutMapping("/v1/nsts/{citizen_id}")
-    public  ResponseEntity<Nst> updateNst(@PathVariable("citizen_id") Long id, @RequestBody Nst nst) {
+    public ResponseEntity<Nst> updateNst(@PathVariable("citizen_id") Long id, @RequestBody Nst nst) {
 
-        return new  ResponseEntity<Nst>(nstService.updateNst(nst,
-                id),HttpStatus.OK);
+        return new ResponseEntity<Nst>(nstService.updateNst(nst,
+                id), HttpStatus.OK);
     }
 
     @DeleteMapping("/v1/{citizen_id}")
     public ResponseEntity<String> deleteRequestVerify(@PathVariable("citizen_id") Long id) {
         nstService.deleteNst(id);
-        return  new ResponseEntity<String>(HttpStatus.OK);
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
     @PatchMapping("/v1/nsts/{citizen_id}")
-    public Nst updateNstFields(@PathVariable("citizen_id") Long id, @RequestBody Map<String, Object> fields){
-        return nstService.updateNstByFields(id,fields);
+    public Nst updateNstFields(@PathVariable("citizen_id") Long id, @RequestBody Map<String, Object> fields) {
+        return nstService.updateNstByFields(id, fields);
     }
 
 }

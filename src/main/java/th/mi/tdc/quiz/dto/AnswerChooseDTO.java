@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AnswerChooseDTO {
 
-    private Long questionID;
+    private String questionID;
     private String answerSelected;
 
 

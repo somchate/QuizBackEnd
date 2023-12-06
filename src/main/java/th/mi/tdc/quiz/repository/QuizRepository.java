@@ -12,7 +12,10 @@ import java.util.Optional;
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
 
-    @Query(value = "SELECT * FROM quiz q WHERE q.id = :question_id and q.note = :exam_desc", nativeQuery = true)
-    Optional<Quiz> findByIdAndNote(Long question_id, String exam_desc );
+    @Query(value = "SELECT * FROM quiz q WHERE q.question_no = :question_id and q.note = :exam_desc", nativeQuery = true)
+    Optional<Quiz> findByIdAndNote(String question_id, String exam_desc);
+
+    @Query(value = "SELECT * FROM quiz q WHERE q.note = :exam_desc", nativeQuery = true)
+    List<Quiz> findByNote(String exam_desc);
 
 }

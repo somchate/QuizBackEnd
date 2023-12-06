@@ -18,6 +18,7 @@ import java.util.Optional;
 public class QuizServiceImpl implements QuizService {
 
     private final QuizRepository quizRepository;
+
     public QuizServiceImpl(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
@@ -49,8 +50,13 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public Optional<Quiz> getQuizByIdAndNote(Long id, String exam_desc) {
-        return quizRepository.findByIdAndNote(id, exam_desc);
+    public Optional<Quiz> getQuizByIdAndNote(String question_no, String exam_desc) {
+        return quizRepository.findByIdAndNote(question_no, exam_desc);
+    }
+
+    @Override
+    public List<Quiz> getByNote(String exam_desc) {
+        return quizRepository.findByNote(exam_desc);
     }
 
     @Override
